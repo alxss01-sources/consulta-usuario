@@ -10,6 +10,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        maven: ['3.8.8', '3.9.8']
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -20,8 +25,11 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
-      - name: Setup Maven
+      - name: Setup Maven ${{ matrix.maven }}
         uses: s4u/setup-maven-action@v1
+        with:
+          java-version: 17
+          maven-version: ${{ matrix.maven }}
 
       - name: mvn build
         run: mvn clean install
