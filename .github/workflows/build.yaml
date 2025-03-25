@@ -5,7 +5,8 @@ on:
       sonar:
         description: 'Defini se o sonar será executado'
         required: true
-        default: string
+        default: true
+        type: boolean
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,7 +21,7 @@ jobs:
           java-version: '21'
 
       - name: Setup Maven
-        uses: s4u/setup-maven-action@latest
+        uses: s4u/setup-maven-action@v1
 
       - name: mvn build
         run: mvn clean install
