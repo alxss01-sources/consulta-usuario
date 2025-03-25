@@ -1,0 +1,26 @@
+name: Integração Contínua
+on:
+  workflow_dispatch:
+    inputs:
+      sonar:
+        description: 'Defini se o sonar será executado'
+        required: true
+        default: string
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Setup Maven
+        uses: s4u/setup-maven-action@latest
+
+      - name: mvn build
+        run: mvn clean install
