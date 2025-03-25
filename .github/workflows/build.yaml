@@ -22,14 +22,11 @@ jobs:
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
+          distribution: "temurin"
           java-version: '21'
+          cache: "maven"
 
-      - name: Setup Maven ${{ matrix.maven }}
-        uses: s4u/setup-maven-action@v1
-        with:
-          java-version: 17
-          maven-version: ${{ matrix.maven }}
+
 
       - name: mvn build
         run: mvn clean install
