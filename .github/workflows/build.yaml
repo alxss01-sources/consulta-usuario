@@ -30,3 +30,6 @@ jobs:
 
       - name: mvn build
         run: mvn clean install
+
+      - name: Summary
+        run: echo "Sucesso=sucesso" >> $GITHUB_STEP_SUMMARY
