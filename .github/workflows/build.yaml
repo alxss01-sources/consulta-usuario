@@ -11,9 +11,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        maven: ['3.8.8', '3.9.8']
+    #strategy:
+      #matrix:
+        #maven: ['3.8.8', '3.9.8']
 
     steps:
       - name: Checkout Repository
@@ -29,11 +29,12 @@ jobs:
 
 
       - name: mvn build
+        id: mvn_build
         run: |
           if mvn clean install; then
-            status="Sucesso ✅" >> $GITHUB_ENV
+            echo "status=Sucesso ✅" >> $GITHUB_ENV
           else
-            status="Falha ❌" >> $GIThUB_ENV
+            echo "status=Falha ❌" >> $GIThUB_ENV
           fi
 
       - name: Summary
