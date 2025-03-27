@@ -34,4 +34,4 @@ jobs:
       - name: Summary
         run: |
           echo "${{ env.action_state }}\n" >> $GITHUB_STEP_SUMMARY
-          cat HELP.md >> $GITHUB_STEP_SUMMARY
+          cat README.md >> $GITHUB_STEP_SUMMARY
