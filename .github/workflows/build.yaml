@@ -29,9 +29,15 @@ jobs:
 
 
       - name: mvn build
-        run: mvn clean install
+        run: |
+          if mvn clean install; then
+            status="Sucesso ✅" >> $GITHUB_ENV
+          else
+            status="Falha ❌" >> $GIThUB_ENV
+          fi
 
       - name: Summary
         run: |
-          echo "${{ env.action_state }}\n" >> $GITHUB_STEP_SUMMARY
-          cat README.md >> $GITHUB_STEP_SUMMARY
+          echo "Resumo" >> $GITHUB_STEP_SUMMARY
+          echo "Build: ${{ env.status }}" >> $GITHUB_STEP_SUMMARY
+          
