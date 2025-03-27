@@ -32,4 +32,6 @@ jobs:
         run: mvn clean install
 
       - name: Summary
-        run: echo "Sucesso=sucesso" >> $GITHUB_STEP_SUMMARY
+        run: |
+          echo "${{ env.action_state }}\n" >> $GITHUB_STEP_SUMMARY
+          cat HELP.md >> $GITHUB_STEP_SUMMARY
